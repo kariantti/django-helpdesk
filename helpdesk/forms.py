@@ -160,6 +160,7 @@ class TicketForm(CustomFieldMixin, forms.Form):
         )
 
     priority = forms.ChoiceField(
+        widget=forms.widgets.HiddenInput,
         choices=Ticket.PRIORITY_CHOICES,
         required=False,
         initial='3',
@@ -169,7 +170,8 @@ class TicketForm(CustomFieldMixin, forms.Form):
         )
 
     due_date = forms.DateTimeField(
-        widget=extras.SelectDateWidget,
+        #widget=extras.SelectDateWidget,
+        widget=forms.widgets.HiddenInput,
         required=False,
         label=_('Due on'),
         )
@@ -338,6 +340,7 @@ class PublicTicketForm(CustomFieldMixin, forms.Form):
         )
 
     submitter_email = forms.EmailField(
+        widget=forms.widgets.HiddenInput,
         required=True,
         label=_('Your E-Mail Address'),
         help_text=_('We will e-mail you when your ticket is updated.'),
